@@ -1,7 +1,7 @@
 //Core
 import React, { Component } from 'react';
 
-//Instruments
+//Components
 import StatusBar from '../StatusBar';
 import Composer from '../Composer';
 import Post from '../Post';

@@ -1,28 +1,38 @@
 //Core
 import React, { Component } from 'react';
 
-//Components
+//Instruments
 import StatusBar from '../StatusBar';
 import Composer from '../Composer';
 import Post from '../Post';
+import Spinner from '../Spinner';
 
 //Instruments
 import Styles from './styles.m.css';
 
 export default class Feed extends Component{
-    render() {
+    state = {
+        posts: [
+            { id: '123', comment: 'Hi there!', created: 1559952000 },
+            { id: '345', comment: 'Hello!', created: 1559952000 }
+        ],
+        isDownloadDOM: false,
+    };
 
-        const { avatar, currentUserFirstName } = this.props;
+    render() {
+        const { posts, isDownloadDOM } = this.state;
+
+        const postsJSX = posts.map((post) => {
+            return <Post key = { post.id } { ...post } />
+        });
 
         return (
             <section className = { Styles.feed }>
-                <StatusBar {...this.props}/>
-                <Composer
-                avatar = { avatar }
-                currentUserFirstName = { currentUserFirstName }
-                />
-                <Post {...this.props}/>
+                <Spinner isSpinning = { isDownloadDOM } />
+                <StatusBar />
+                <Composer />
+                { postsJSX }
             </section>
-        )
+        );
     }
 }

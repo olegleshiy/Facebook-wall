@@ -16,11 +16,15 @@ export default class Feed extends Component{
             { id: '123', comment: 'Hi there!', created: 1559952000 },
             { id: '345', comment: 'Hello!', created: 1559952000 }
         ],
-        isDownloadDOM: false,
+        isDownloadDOM: true,
     };
 
     render() {
         const { posts, isDownloadDOM } = this.state;
+
+        setTimeout(()=>{
+            this.setState({ isDownloadDOM: false });
+        }, 1000);
 
         const postsJSX = posts.map((post) => {
             return <Post key = { post.id } { ...post } />

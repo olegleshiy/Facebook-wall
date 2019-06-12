@@ -22,10 +22,6 @@ export default class Feed extends Component{
     render() {
         const { posts, isDownloadDOM } = this.state;
 
-        setTimeout(()=>{
-            this.setState({ isDownloadDOM: false });
-        }, 1000);
-
         const postsJSX = posts.map((post) => {
             return <Post key = { post.id } { ...post } />
         });

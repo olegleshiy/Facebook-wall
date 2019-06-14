@@ -20,13 +20,13 @@ export default class Feed extends Component{
             {
                 id: '123',
                 comment: 'Hi there!',
-                created: 1559952000,
+                created: 1560556450,
                 likes: []
             },
             {
                 id: '345',
                 comment: 'Hello!',
-                created: 1559952000,
+                created: 1560556450,
                 likes: []
             }
         ],

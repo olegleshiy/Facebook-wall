@@ -2,7 +2,8 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 
-//Instruments
+//Components
+import { withProfile } from '../HOC/withProfile';
 import StatusBar from '../StatusBar';
 import Composer from '../Composer';
 import Post from '../Post';
@@ -10,18 +11,10 @@ import Spinner from '../Spinner';
 
 //Instruments
 import Styles from './styles.m.css';
-import { getUniqueID, delay } from "../../instruments";
+import { getUniqueID, delay } from '../../instruments';
 
+@withProfile
 export default class Feed extends Component{
-    constructor () {
-        super();
-
-        this._createPost = this._createPost.bind(this);
-        this._setDownloadDOMState = this._setDownloadDOMState.bind(this);
-        this._likePost = this._likePost.bind(this);
-        this._removePost = this._removePost.bind(this);
-    }
-
     state = {
         posts: [
             {
@@ -40,13 +33,13 @@ export default class Feed extends Component{
         isDownloadDOM: false,
     };
 
-    _setDownloadDOMState (state) {
+    _setDownloadDOMState = (state) => {
         this.setState({
             isDownloadDOM: state,
         })
-    }
+    };
 
-    async _createPost (comment) {
+    _createPost = async (comment) => {
         this._setDownloadDOMState(true);
 
         const post = {
@@ -62,9 +55,9 @@ export default class Feed extends Component{
             posts: [post, ...posts],
             isDownloadDOM: false,
         }));
-    }
+    };
 
-    async _likePost (id) {
+    _likePost = async (id) => {
         const { currentUserFirstName, currentUserLastName } = this.props;
         this._setDownloadDOMState(true);
 
@@ -92,7 +85,7 @@ export default class Feed extends Component{
         });
     };
 
-    async _removePost (id) {
+    _removePost = async (id) => {
         this._setDownloadDOMState(true);
 
         await delay(1200);
@@ -101,7 +94,7 @@ export default class Feed extends Component{
             posts:         posts.filter((post) => post.id !== id),
             isDownloadDOM: false,
         }));
-    }
+    };
 
     render() {
         const { posts, isDownloadDOM } = this.state;

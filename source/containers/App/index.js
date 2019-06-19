@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 
 //Components
+import Catcher from '../../components/Catcher';
 import Feed from '../../components/Feed';
 import { Provider } from '../../components/HOC/withProfile';
 
@@ -10,16 +11,18 @@ import avatar from '../../theme/assets/lisa.png';
 
 const options = {
     avatar,
-    currentUserFirstName: 'Lisa',
-    currentUserLastName: 'Simpson',
+    currentUserFirstName: 'Олег',
+    currentUserLastName: 'Загребельный',
 };
 
 export default class App extends Component {
     render() {
         return (
-            <Provider value = { options }>
-                <Feed />
-            </Provider>
+            <Catcher>
+                <Provider value = { options }>
+                    <Feed />
+                </Provider>
+            </Catcher>
         );
     }
 }

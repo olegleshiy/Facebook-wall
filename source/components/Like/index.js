@@ -24,19 +24,21 @@ export default class Like extends Component {
     };
 
     state = {
-        showLikers: false
+        showLikes: false
     };
 
-    _showLikers = () => {
+
+
+    _showLikes = () => {
         this.setState({
-            showLikers: true,
-        })
+            showLikes: true,
+        });
     };
 
-    _hideLikers = () => {
+    _hideLikes = () => {
         this.setState({
-            showLikers: false,
-        })
+            showLikes: false,
+        });
     };
 
     _likePost = () => {
@@ -54,25 +56,25 @@ export default class Like extends Component {
     };
 
     _getLikeStyles = () => {
-        const likecByMe = this._getLikedByMe();
+        const likedByMe = this._getLikedByMe();
 
         return cx(Styles.icon, {
-            [Styles.liked]: likecByMe,
+            [Styles.liked]: likedByMe,
         });
     };
 
-    _getLikersList = () => {
-        const { showLikers } = this.state;
+    _getLikesList = () => {
+        const { showLikes } = this.state;
         const { likes } = this.props;
 
         const likesJSX = likes.map(({ firstName, lastName, id }) => (
             <li key = { id }>{`${firstName} ${lastName}`}</li>
         ));
 
-        return likes.length && showLikers ? <ul>{ likesJSX }</ul> : null;
+        return likes.length && showLikes ? <ul>{ likesJSX }</ul> : null;
     };
 
-    _getLikersDescription = () => {
+    _getLikesDescription = () => {
         const { likes, currentUserFirstName, currentUserLastName } = this.props;
         const likedByMe = this._getLikedByMe();
 
@@ -87,19 +89,20 @@ export default class Like extends Component {
         }
     };
 
+
     render() {
         const likeStyles = this._getLikeStyles();
-        const likersList = this._getLikersList();
-        const likesDescription = this._getLikersDescription();
+        const likesList = this._getLikesList();
+        const likesDescription = this._getLikesDescription();
 
         return (
             <section className = { Styles.like }>
                 <span className = { likeStyles } onClick = { this._likePost }>Like</span>
                 <div>
-                    {likersList}
+                    {likesList}
                     <span
-                        onMouseEnter = { this._showLikers }
-                        onMouseLeave = { this._hideLikers }
+                        onMouseEnter = { this._showLikes }
+                        onMouseLeave = { this._hideLikes }
                     >{likesDescription}</span>
                 </div>
             </section>

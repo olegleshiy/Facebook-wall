@@ -12,7 +12,7 @@ import Spinner from '../Spinner';
 //Instruments
 import Styles from './styles.m.css';
 import { api, TOKEN, GROUP_ID } from '../../config/api';
-import { socket } from "../../socket/init";
+import { socket } from '../../socket/init';
 
 
 class Feed extends Component{

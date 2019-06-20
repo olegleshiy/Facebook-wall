@@ -7,7 +7,7 @@ import { withProfile } from '../HOC/withProfile';
 
 //Instruments
 import Styles from './styles.m.css';
-import { socket } from "../../socket/init";
+import { socket } from '../../socket/init';
 
 class StatusBar extends Component{
     state = {

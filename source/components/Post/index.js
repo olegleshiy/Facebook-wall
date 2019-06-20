@@ -10,8 +10,7 @@ import { withProfile } from '../HOC/withProfile';
 //Instruments
 import Styles from './styles.m.css';
 
-@withProfile
-export default class Post extends Component{
+class Post extends Component{
     static propTypes = {
         _likePost:   func.isRequired,
         _removePost: func.isRequired,
@@ -29,7 +28,12 @@ export default class Post extends Component{
     };
 
     _getCross = () => {
-        const { firstName, lastName, currentUserFirstName, currentUserLastName } = this.props;
+        const {
+            firstName,
+            lastName,
+            currentUserFirstName,
+            currentUserLastName
+        } = this.props;
 
         return `${firstName} ${lastName}` === `${currentUserFirstName} ${currentUserLastName}` ? <span className = { Styles.cross } onClick = { this._removePost } /> : null;
     };
@@ -62,3 +66,5 @@ export default class Post extends Component{
         );
     }
 }
+
+export default withProfile(Post);

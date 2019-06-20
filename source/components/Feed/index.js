@@ -14,8 +14,8 @@ import Styles from './styles.m.css';
 import { api, TOKEN, GROUP_ID } from '../../config/api';
 import { socket } from "../../socket/init";
 
-@withProfile
-export default class Feed extends Component{
+
+class Feed extends Component{
     state = {
         posts: [],
         isDownloadDOM: false,
@@ -53,10 +53,11 @@ export default class Feed extends Component{
             if (`${currentUserFirstName} ${currentUserLastName}` !== `${meta.authorFirstName} ${meta.authorLastName}`) {
                 this.setState(({ posts }) => ({
                     posts: posts.map(
-                        (post) => post.is === likedPost.id ? likedPost : post,
+                        (post) => post.id === likedPost.id ? likedPost : post,
                     ),
                 }));
             }
+
         });
     }
 
@@ -119,11 +120,9 @@ export default class Feed extends Component{
 
         const { data: likedPost } = await response.json();
 
-        console.log("likedPost", likedPost);
-
         this.setState(({ posts }) => ({
             posts: posts.map(
-                (post) => post.is === likedPost.id ? likedPost : post,
+                (post) => post.id === likedPost.id ? likedPost : post,
             ),
             isDownloadDOM: false,
         }));
@@ -138,10 +137,11 @@ export default class Feed extends Component{
                 Authorization: TOKEN,
             },
         });
-        {/*((id)=>{posts.splice(id, 1); return posts})()*/}
+
+        {/*posts:     posts.filter((post) => post.id !== id)*/}
 
         this.setState(({posts}) => ({
-            posts:         posts.filter((post) => post.id !== id),
+            posts:         ((id)=>{posts.splice(id, 1); return posts})(),
             isDownloadDOM: false,
         }));
     };
@@ -171,3 +171,5 @@ export default class Feed extends Component{
         );
     }
 }
+
+export default withProfile(Feed);

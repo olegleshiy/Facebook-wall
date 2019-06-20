@@ -9,8 +9,7 @@ import { withProfile } from '../HOC/withProfile';
 //Instruments
 import Styles from './styles.m.css';
 
-@withProfile
-export default class Like extends Component {
+class Like extends Component {
     static propTypes = {
         _likePost: func.isRequired,
         id: string.isRequired,
@@ -26,8 +25,6 @@ export default class Like extends Component {
     state = {
         showLikes: false
     };
-
-
 
     _showLikes = () => {
         this.setState({
@@ -89,7 +86,6 @@ export default class Like extends Component {
         }
     };
 
-
     render() {
         const likeStyles = this._getLikeStyles();
         const likesList = this._getLikesList();
@@ -109,3 +105,5 @@ export default class Like extends Component {
         )
     }
 }
+
+export default withProfile(Like);

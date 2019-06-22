@@ -1,6 +1,7 @@
 .postman {
     display: flex;
     position: fixed;
+    z-index: 1;
     right: 30px;
     bottom: 30px;
     align-items: center;

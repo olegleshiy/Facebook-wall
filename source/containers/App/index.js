@@ -7,7 +7,7 @@ import Feed from '../../components/Feed';
 import { Provider } from '../../components/HOC/withProfile';
 
 //Instruments
-import avatar from '../../theme/assets/lisa.png';
+import avatar from '../../theme/assets/oleg.png';
 
 const options = {
     avatar,

@@ -35,7 +35,7 @@ class Feed extends Component{
 
             if (`${currentUserFirstName} ${currentUserLastName}` !== `${meta.authorFirstName} ${meta.authorLastName}`) {
                 this.setState(({posts}) => ({
-                    posts: [createdPost, ...posts]
+                    posts: [createdPost, ...posts],
                 }));
             }
         });

@@ -9,7 +9,7 @@ const Postman = (props) => {
     return (
         <section className = { Styles.postman }>
             <img src = { props.avatar } />
-            <span>Welcome online, {props.currentUserFirstName}</span>
+            <span>Welcome online, { props.currentUserFirstName }</span>
         </section>
     );
 };

@@ -200,7 +200,7 @@ class Feed extends Component{
                     onEnter = { this._animateComposerEnter }>
                     <Composer _createPost = { this._createPost } />
                 </Transition>
-                <Counter count = { postsJSX.length }/>
+                <Counter count = { postsJSX.length } />
                 <Transition
                     in
                     appear

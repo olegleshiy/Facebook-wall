@@ -29,7 +29,6 @@ const _updateCommentSpy = jest.spyOn(result.instance(), '_updateComment');
 const _submitOnEnterSpy = jest.spyOn(result.instance(), '_submitOnEnter');
 
 describe('Composer component:', () => {
-
     console.log(result.debug());
 
     test('should have 1 <<section>> element', () => {

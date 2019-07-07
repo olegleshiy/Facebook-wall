@@ -10,7 +10,7 @@ import { withProfile } from '../HOC/withProfile';
 //Instruments
 import Styles from './styles.m.css';
 
-class Post extends Component{
+class Post extends Component {
     static propTypes = {
         _likePost:   func.isRequired,
         _removePost: func.isRequired,
@@ -18,7 +18,6 @@ class Post extends Component{
         created:     number.isRequired,
         id:          string.isRequired,
         likes:       array.isRequired,
-
     };
 
     _removePost = () => {
@@ -32,7 +31,7 @@ class Post extends Component{
             firstName,
             lastName,
             currentUserFirstName,
-            currentUserLastName
+            currentUserLastName,
         } = this.props;
 
         return `${firstName} ${lastName}` === `${currentUserFirstName} ${currentUserLastName}` ? <span className = { Styles.cross } onClick = { this._removePost } /> : null;
@@ -47,7 +46,7 @@ class Post extends Component{
             likes,
             avatar,
             firstName,
-            lastName
+            lastName,
         } = this.props;
 
         const cross = this._getCross();

@@ -38,6 +38,10 @@ describe('instruments:', () => {
         expect(getUniqueID(13)).toHaveLength(13);
     });
 
+    test('getUniqueID function should return the default value of the specified length', () => {
+        expect(getUniqueID()).toHaveLength(15);
+    });
+
     test('getFullApiUrl function should be a function', () => {
         expect(getFullApiUrl).toBeInstanceOf(Function);
     });
@@ -52,5 +56,9 @@ describe('instruments:', () => {
 
     test('getFullApiUrl function should return a string', () => {
         expect(getFullApiUrl('api', 'GROUP_ID')).toMatchSnapshot();
+    });
+
+    test('getFullApiUrl function should return a string containing https', () => {
+        expect(getFullApiUrl('https', 'sdv4345zzc')).toMatch(/^https/);
     });
 });

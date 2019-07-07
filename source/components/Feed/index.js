@@ -19,7 +19,7 @@ import { api, TOKEN, GROUP_ID } from '../../config/api';
 import { socket } from '../../socket/init';
 
 
-class Feed extends Component{
+class Feed extends Component {
     state = {
         posts: [],
         isDownloadDOM: false,
@@ -36,7 +36,7 @@ class Feed extends Component{
 
             if (`${currentUserFirstName} ${currentUserLastName}` !== `${meta.authorFirstName} ${meta.authorLastName}`) {
                 this.setState(({posts}) => ({
-                    posts: [createdPost, ...posts]
+                    posts: [ createdPost, ...posts ]
                 }));
             }
         });
@@ -61,7 +61,6 @@ class Feed extends Component{
                     ),
                 }));
             }
-
         });
     }
 
@@ -74,7 +73,7 @@ class Feed extends Component{
     _setDownloadDOMState = (state) => {
         this.setState({
             isDownloadDOM: state,
-        })
+        });
     };
 
     _fetchPosts = async () => {
@@ -107,7 +106,7 @@ class Feed extends Component{
         const { data: post } = await response.json();
 
         this.setState(({ posts }) => ({
-            posts: [post, ...posts],
+            posts: [ post, ...posts ],
             isDownloadDOM: false,
         }));
     };
@@ -174,10 +173,10 @@ class Feed extends Component{
                         exitActive: Styles.postOutEnd,
                     }}
                     key = { post.id }
-                    timeout = { {
+                    timeout = {{
                         enter: 500,
                         exit: 400,
-                    } }>
+                    }}>
                     <Catcher>
                         <Post
                             { ...post }
@@ -186,7 +185,7 @@ class Feed extends Component{
                         />
                     </Catcher>
                 </CSSTransition>
-            )
+            );
         });
 
         return (
@@ -194,16 +193,16 @@ class Feed extends Component{
                 <Spinner isSpinning = { isDownloadDOM } />
                 <StatusBar />
                 <Transition
-                    in
                     appear
+                    in
                     timeout = { 1000 }
                     onEnter = { this._animateComposerEnter }>
                     <Composer _createPost = { this._createPost } />
                 </Transition>
                 <Counter count = { postsJSX.length }/>
                 <Transition
-                    in
                     appear
+                    in
                     timeout = { 4000 }
                     onEntering = { this._animatePostmanEntering }
                     onEntered = { this._animatePostmanEntered }>

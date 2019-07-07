@@ -32,11 +32,9 @@ export default class Catcher extends Component {
                         Our space 🚀 engineers 👩‍💻 fixing that already!
                     </p>
                 </section>
-            )
+            );
         }
 
         return this.props.children;
     }
 }
-
-

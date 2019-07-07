@@ -11,7 +11,7 @@ import { withProfile } from '../HOC/withProfile';
 import Styles from './styles.m.css';
 import { socket } from '../../socket/init';
 
-class StatusBar extends Component{
+class StatusBar extends Component {
     state = {
         online: false,
     };
@@ -43,22 +43,22 @@ class StatusBar extends Component{
         const {
             avatar,
             currentUserFirstName,
-            currentUserLastName
+            currentUserLastName,
         } = this.props;
 
         const { online } = this.state;
 
         const statusStyle = cx(Styles.status, {
-            [Styles.online]: online,
-            [Styles.offline]: !online,
+            [ Styles.online ]: online,
+            [ Styles.offline ]: !online,
         });
 
         const statusMessage = online ? 'online' : 'offline';
 
         return (
             <Transition
-                in
                 appear
+                in
                 timeout = { 1000 }
                 onEnter = { this._animateStatusBarEnter }>
                 <section className = { Styles.statusBar }>

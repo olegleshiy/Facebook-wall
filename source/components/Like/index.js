@@ -18,12 +18,12 @@ class Like extends Component {
                 id:        string.isRequired,
                 firstName: string.isRequired,
                 lastName:  string.isRequired,
-            })
+            }),
         ).isRequired,
     };
 
     state = {
-        showLikes: false
+        showLikes: false,
     };
 
     _showLikes = () => {
@@ -49,14 +49,14 @@ class Like extends Component {
 
         return likes.some(({ firstName, lastName }) => {
             return `${firstName} ${lastName}` ===  `${currentUserFirstName} ${currentUserLastName}`;
-        })
+        });
     };
 
     _getLikeStyles = () => {
         const likedByMe = this._getLikedByMe();
 
         return cx(Styles.icon, {
-            [Styles.liked]: likedByMe,
+            [ Styles.liked ]: likedByMe,
         });
     };
 
@@ -93,16 +93,20 @@ class Like extends Component {
 
         return (
             <section className = { Styles.like }>
-                <span className = { likeStyles } onClick = { this._likePost }>Like</span>
+                <span className = { likeStyles }
+                      onClick = { this._likePost }>
+                    Like
+                </span>
                 <div>
                     {likesList}
                     <span
                         onMouseEnter = { this._showLikes }
-                        onMouseLeave = { this._hideLikes }
-                    >{likesDescription}</span>
+                        onMouseLeave = { this._hideLikes }>
+                        {likesDescription}
+                    </span>
                 </div>
             </section>
-        )
+        );
     }
 }
 

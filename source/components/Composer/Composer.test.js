@@ -1,6 +1,6 @@
 //Core
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { Composer } from './';
 
 const props = {
@@ -21,7 +21,7 @@ const updatedState = {
     comment,
 };
 
-const result = mount(<Composer { ...props } />);
+const result = mount(<Composer { ...props } avatar = 'value' currentUserFirstName = 'value' />);
 
 const _submitCommentSpy = jest.spyOn(result.instance(), '_submitComment');
 const _handleFormSubmitSpy = jest.spyOn(result.instance(), '_handleFormSubmit');
@@ -115,5 +115,10 @@ describe('Composer component:', () => {
 
     test('_submitOnEnter class methods should be invoked onse after enter key "Enter"', () => {
         expect(_submitOnEnterSpy).toHaveBeenCalledTimes(0);
+    });
+
+    test('Composer should correspond to its snapshot counterpart', () => {
+        const composer = shallow(<Composer { ...props } />);
+        expect(composer).toMatchSnapshot();
     });
 });

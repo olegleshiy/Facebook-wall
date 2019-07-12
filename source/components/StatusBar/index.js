@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import cx from 'classnames';
 import { Transition } from 'react-transition-group';
 import { fromTo } from 'gsap';
+import { Link } from 'react-router-dom';
 
 //Components
 import { withProfile } from '../HOC/withProfile';
@@ -39,12 +40,13 @@ class StatusBar extends Component {
         fromTo(statusBar, 1, { opacity: 0 }, { opacity: 1 });
     };
 
+
+    _clearStorage = () => {
+        localStorage.removeItem('isLogin');
+    };
+
     render() {
-        const {
-            avatar,
-            currentUserFirstName,
-            currentUserLastName,
-        } = this.props;
+        const {avatar, currentUserFirstName,} = this.props;
 
         const { online } = this.state;
 
@@ -66,12 +68,12 @@ class StatusBar extends Component {
                         <div>{statusMessage}</div>
                         <span />
                     </div>
-                    <button>
+                    <Link to = '/profile'>
                         <img src = { avatar } />
                         <span>{`${currentUserFirstName}`}</span>
-                        &nbsp;
-                        <span>{`${currentUserLastName}`}</span>
-                    </button>
+                    </Link>
+                    <Link to = '/feed'>Feed</Link>
+                    <Link to = '/login' onClick = { this._clearStorage }>Logout</Link>
                 </section>
             </Transition>
         );

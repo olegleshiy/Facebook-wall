@@ -13,7 +13,7 @@ class Login extends Component {
         login: '',
     };
 
-    _updateComment = (event) => {
+    _updateLogin = (event) => {
         this.setState({
             login: event.target.value,
         });
@@ -23,21 +23,21 @@ class Login extends Component {
         event.preventDefault();
 
         const { login } = this.state;
+
         const value = event.target.elements[0].value;
 
-        localStorage.setItem('isLogin', value);
-
-        login || value ? this.props.history.push('/feed') : this.props.history.push('/login');
-
-        this.setState({
-            isLogin: true,
-            login: '',
-        });
+        if(login){
+            localStorage.setItem('isLogin', value);
+            this.setState( {
+                login: '',
+            });
+            this.props._setLoginState(true);
+        }
+        return null;
     };
 
     render() {
         const { login } = this.state;
-
         return (
             <section className = { Styles.login }>
                 <form onSubmit = { this._handleFormSubmit }>
@@ -45,7 +45,7 @@ class Login extends Component {
                         type = 'text'
                         placeholder = 'login'
                         value = { login }
-                        onChange = { this._updateComment }
+                        onChange = { this._updateLogin }
                     />
                     <input type = 'submit' value = 'Sign in' />
                 </form>

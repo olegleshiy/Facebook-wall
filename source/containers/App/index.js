@@ -21,22 +21,38 @@ export default class App extends Component {
             currentUserFirstName: 'Олег',
             currentUserLastName: 'Загребельный',
             isLogin: false,
-        }
+        },
+    };
+
+    _setLoginState = (state) => {
+
+        this.setState({options:{
+                avatar,
+                currentUserFirstName: 'Олег',
+                currentUserLastName: 'Загребельный',
+                isLogin: state,
+            }
+        });
     };
 
     render() {
+        const { isLogin } = this.state.options;
+
         return (
             <Catcher>
-                <Provider value = { this.state.options }>
+                <Provider value = { this.state.options } >
                     <StatusBar />
-                    {
-                    <Switch>
-                        <Route component = { Feed } path = '/feed' />
-                        <Route component = { Profile } path = '/profile' />
-                        <Route component = { Login } path = '/login' />
-                        <Redirect to = '/feed' />
-                    </Switch>
-                    }
+                        <Switch>
+                            <Route path='/login'
+                                   render = {() =>
+                                       <Login _setLoginState = { this._setLoginState } />
+                                   }
+                            />
+                            { !isLogin && <Redirect to = '/login' /> }
+                            <Route component = { Feed } path = '/feed' />
+                            <Route component = { Profile } path='/profile'/>
+                            <Redirect to = '/feed' />
+                        </Switch>
                 </Provider>
             </Catcher>
         );

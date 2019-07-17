@@ -22,17 +22,14 @@ class Login extends Component {
     _handleFormSubmit = (event) => {
         event.preventDefault();
 
-        const { login } = this.state;
         const value = event.target.elements[0].value;
 
-        localStorage.setItem('isLogin', value);
-
-        login || value ? this.props.history.push('/feed') : this.props.history.push('/login');
-
         this.setState({
-            isLogin: true,
             login: '',
         });
+
+        value && this.props._setLoginStateTrue();
+        value && this.props.history.replace('/feed');
     };
 
     render() {

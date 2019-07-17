@@ -43,11 +43,12 @@ class StatusBar extends Component {
 
     _clearStorage = () => {
         localStorage.removeItem('isLogin');
+
+        this.props._setLoginStateFalse();
     };
 
     render() {
-        const {avatar, currentUserFirstName,} = this.props;
-
+        const {avatar, currentUserFirstName, isLogin} = this.props;
         const { online } = this.state;
 
         const statusStyle = cx(Styles.status, {
@@ -56,6 +57,17 @@ class StatusBar extends Component {
         });
 
         const statusMessage = online ? 'online' : 'offline';
+
+        const links = isLogin && (
+            <>
+                <Link to = '/profile'>
+                    <img src = { avatar } />
+                    <span>{currentUserFirstName}</span>
+                </Link>
+                <Link to = '/feed'>Feed</Link>
+                <a onClick = { () => this._clearStorage() }>Logout</a>
+            </>
+        );
 
         return (
             <Transition
@@ -68,12 +80,7 @@ class StatusBar extends Component {
                         <div>{statusMessage}</div>
                         <span />
                     </div>
-                    <Link to = '/profile'>
-                        <img src = { avatar } />
-                        <span>{`${currentUserFirstName}`}</span>
-                    </Link>
-                    <Link to = '/feed'>Feed</Link>
-                    <Link to = '/login' onClick = { this._clearStorage }>Logout</Link>
+                    {links}
                 </section>
             </Transition>
         );

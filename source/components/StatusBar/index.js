@@ -43,7 +43,6 @@ class StatusBar extends Component {
 
     _clearStorage = () => {
         localStorage.removeItem('isLogin');
-
         this.props._setLoginStateFalse();
     };
 
@@ -62,7 +61,7 @@ class StatusBar extends Component {
             <>
                 <Link to = '/profile'>
                     <img src = { avatar } />
-                    <span>{currentUserFirstName}</span>
+                    <span>{ currentUserFirstName }</span>
                 </Link>
                 <Link to = '/feed'>Feed</Link>
                 <a onClick = { () => this._clearStorage() }>Logout</a>

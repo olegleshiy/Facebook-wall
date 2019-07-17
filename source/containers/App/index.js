@@ -57,7 +57,7 @@ export default class App extends Component {
                                 <Login _setLoginStateTrue = { this._setLoginStateTrue } { ...props } />
                             ) }
                         />
-                        {!isLogin && <Redirect to = '/login' />}
+                        { !isLogin && <Redirect to = '/login' /> }
                         <Route component = { Feed } path = '/feed' />
                         <Route component = { Profile } path = '/profile' />
                         <Route component = { Login } path = '/login' />
